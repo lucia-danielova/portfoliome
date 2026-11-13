@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaktívne portfólio | Lucia Danielová – Web Development, UI/UX Dizajn a grafická tvorba.">
+    <title>Lucia Danielová | Interaktívne Portfólio</title>
+    
+    <!-- Google Fonts: Montserrat & Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Prepojenie na externý CSS súbor -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Plávajúca horná lišta a uvítacia hlavička -->
+    <header class="site-header">
+        <div class="header-top">
+            <span class="header-badge">Portfólio</span>
+            <span class="progress-pill" id="progress-counter" title="Počet preskúmaných kameňov">Objavené: 0 / 9</span>
+            <button class="overview-trigger" id="open-overview-btn" type="button" aria-label="Otvoriť rýchly prehľad sekcií">
+                ☰ Rýchly prehľad
+            </button>
+        </div>
+        <h1>Lucia <span>Danielová</span></h1>
+        <p>Klikni na kamene na ceste a spoznaj moju prácu</p>
+    </header>
+
+    <!-- Hlavný kontajner scény s pomerom 16:9 a pozadím podklad.png -->
+    <main class="stage-wrapper">
+        <div class="portfolio-stage" id="stage" role="region" aria-label="Interaktívna mapa portfólia"></div>
+    </main>
+
+    <!-- Prehľadná mriežka pre mobilné zariadenia (zobrazí sa pod scénou na menších obrazovkách) -->
+    <section class="mobile-section" aria-label="Rýchla navigácia pre mobilné zariadenia">
+        <h2 class="mobile-section-title">Sekcie portfólia</h2>
+        <div class="mobile-grid" id="mobile-grid"></div>
+    </section>
+
+    <!-- Vyskakovacie (modálne) okno pre detail kameňa (Glassmorphism) -->
+    <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="close-modal" id="close-btn" type="button" aria-label="Zavrieť okno">&times;</button>
+            
+            <div class="modal-body">
+                <span class="modal-subtitle" id="modal-subtitle">Sekcia</span>
+                <h2 id="modal-title">Názov sekcie</h2>
+                <div class="divider">✦</div>
+                <p id="modal-description">Tu sa zobrazí podrobný popis sekcie.</p>
+                
+                <!-- Kontajner pre štítky (technológie a zručnosti) -->
+                <div id="modal-tags" class="modal-tags"></div>
+                
+                <!-- Kontajner pre akčné tlačidlo (GitHub / E-mail) -->
+                <div id="modal-action" class="modal-action"></div>
+            </div>
+
+            <!-- Spodná navigácia medzi kameňmi priamo v modálnom okne -->
+            <div class="modal-footer">
+                <button class="nav-arrow-btn" id="prev-stone-btn" type="button" aria-label="Predchádzajúca sekcia">
+                    ← Predchádzajúci
+                </button>
+                <span class="modal-step-indicator" id="modal-step">1 / 9</span>
+                <button class="nav-arrow-btn" id="next-stone-btn" type="button" aria-label="Nasledujúca sekcia">
+                    Ďalší →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modálne okno pre Rýchly prehľad všetkých 9 sekcií -->
+    <div id="overview-overlay" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content overview-modal" role="dialog" aria-modal="true" aria-labelledby="overview-title">
+            <button class="close-modal" id="close-overview-btn" type="button" aria-label="Zavrieť prehľad">&times;</button>
+            <div class="modal-body">
+                <span class="modal-subtitle">Kompletná mapa</span>
+                <h2 id="overview-title">Rýchly prehľad portfólia</h2>
+                <div class="divider">✦</div>
+                <div class="overview-grid" id="overview-list"></div>
+                <div class="overview-actions">
+                    <button class="reset-progress-btn" id="reset-progress-btn" type="button">
+                        ↺ Vynulovať postup objavovania
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prepojenie na externý JavaScript súbor -->
+    <script src="script.js"></script>
+</body>
+</html>
