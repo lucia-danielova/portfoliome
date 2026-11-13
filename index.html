@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Interaktívne portfólio | Lucia Danielová – Web Development, UI/UX Dizajn a digitálna tvorba.">
     <title>Lucia Danielová | Interaktívne Portfólio</title>
-    
+
     <!-- Google Fonts: Montserrat & Cormorant Garamond -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Prepojenie na externý CSS súbor -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Plávajúca horná lišta v ľavom hornom rohu -->
+    <!-- Plávajúca hlavička v ľavom hornom rohu -->
     <header class="site-header">
         <div class="header-top">
             <span class="header-badge">Portfólio</span>
@@ -29,42 +28,35 @@
         <p>Klikni na kamene na ceste a spoznaj moju prácu</p>
     </header>
 
-    <!-- Hlavný kontajner scény s pomerom 16:9 a pozadím podklad.png -->
+    <!-- Hlavná scéna 16:9 s pozadím podklad.jpg; kamene a svetlušky vloží JavaScript -->
     <main class="stage-wrapper">
         <div class="portfolio-stage" id="stage" role="region" aria-label="Interaktívna mapa portfólia">
-            <!-- Kontajner pre magické svetlušky v pozadí -->
             <div class="ambient-particles" id="particles-container" aria-hidden="true"></div>
         </div>
     </main>
 
-    <!-- Prehľadná mriežka pre mobilné zariadenia (zobrazí sa pod scénou na menších obrazovkách) -->
+    <!-- Rýchla navigácia pre mobilné zariadenia -->
     <section class="mobile-section" aria-label="Rýchla navigácia pre mobilné zariadenia">
         <h2 class="mobile-section-title">Sekcie portfólia</h2>
         <div class="mobile-grid" id="mobile-grid"></div>
     </section>
 
-    <!-- Vyskakovacie (modálne) okno pre detail kameňa (Glassmorphism) -->
+    <!-- Modálne okno s detailom kameňa -->
     <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
         <div class="modal-content" id="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <button class="close-modal" id="close-btn" type="button" aria-label="Zavrieť okno">&times;</button>
-            
+
             <div class="modal-body">
                 <span class="modal-subtitle" id="modal-subtitle">Sekcia</span>
                 <h2 id="modal-title">Názov sekcie</h2>
                 <div class="divider">✦</div>
                 <p id="modal-description">Tu sa zobrazí podrobný popis sekcie.</p>
-                
-                <!-- Dynamický kontajner pre karty projektov alebo ukazovatele zručností -->
-                <div id="modal-dynamic-extra" class="modal-dynamic-extra"></div>
 
-                <!-- Kontajner pre štítky (technológie a zručnosti) -->
+                <div id="modal-dynamic-extra" class="modal-dynamic-extra"></div>
                 <div id="modal-tags" class="modal-tags"></div>
-                
-                <!-- Kontajner pre akčné tlačidlá (GitHub / E-mail / Kopírovanie) -->
                 <div id="modal-action" class="modal-action"></div>
             </div>
 
-            <!-- Spodná navigácia medzi kameňmi priamo v modálnom okne -->
             <div class="modal-footer">
                 <button class="nav-arrow-btn" id="prev-stone-btn" type="button" aria-label="Predchádzajúca sekcia">
                     ← Predchádzajúci
@@ -77,7 +69,7 @@
         </div>
     </div>
 
-    <!-- Modálne okno pre Rýchly prehľad všetkých 9 sekcií -->
+    <!-- Modálne okno s rýchlym prehľadom všetkých sekcií -->
     <div id="overview-overlay" class="modal-overlay" aria-hidden="true">
         <div class="modal-content overview-modal" role="dialog" aria-modal="true" aria-labelledby="overview-title">
             <button class="close-modal" id="close-overview-btn" type="button" aria-label="Zavrieť prehľad">&times;</button>
@@ -95,10 +87,9 @@
         </div>
     </div>
 
-    <!-- Plávajúca notifikácia (Toast) pri skopírovaní e-mailu alebo dokončení -->
+    <!-- Toast notifikácia -->
     <div id="toast-notification" class="toast-notification" role="status" aria-live="polite"></div>
 
-    <!-- Prepojenie na externý JavaScript súbor -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,49 +1,56 @@
 /**
- * Presná konfigurácia všetkých 9 kameňov na scéne
- * Používa reálne súbory kameňov z tvojho GitHub repozitára (kamen.svg / kamenbezpozadia.png)
+ * INTERAKTÍVNE PORTFÓLIO – Lucia Danielová
+ * Kamene používajú reálne obrázky z repozitára (kamen.png / kamenbezpozadia.png)
  */
+
 const stoneConfig = [
-    { id: 'stone1', step: 1, label: 'Úvod', size: 175, bottom: 5, left: 3, rotate: 0, img: 'kamen.svg' },
-    { id: 'stone2', step: 2, label: 'O mne', size: 148, bottom: 3, left: 12, rotate: 0, img: 'kamenbezpozadia.png' },
-    { id: 'stone3', step: 3, label: 'Zručnosti', size: 100, bottom: 4, left: 18, rotate: 0, img: 'kamen.svg' },
-    { id: 'stone4', step: 4, label: 'Projekty', size: 100, bottom: 3, left: 26, rotate: 0, img: 'kamenbezpozadia.png' },
-    { id: 'stone5', step: 5, label: 'Dizajn', size: 100, bottom: 3, left: 34, rotate: 0, img: 'kamen.svg' },
-    { id: 'stone6', step: 6, label: 'Skúsenosti', size: 134, bottom: 3, left: 44, rotate: 0, img: 'kamenbezpozadia.png' },
-    { id: 'stone7', step: 7, label: 'Vzdelanie', size: 172, bottom: 3, left: 51, rotate: 0, img: 'kamen.svg' },
-    { id: 'stone8', step: 8, label: 'Vízia', size: 117, bottom: 4, left: 60, rotate: -13, img: 'kamenbezpozadia.png' },
-    { id: 'stone9', step: 9, label: 'Kontakt', size: 144, bottom: 8, left: 69, rotate: -26, img: 'kamen.svg' }
+    { id: 'stone1', step: 1, label: 'Úvod',       width: 12.5, bottom: 4,  left: 2,  rotate: -4,  img: 'kamen.png' },
+    { id: 'stone2', step: 2, label: 'O mne',      width: 10.5, bottom: 8,  left: 13, rotate: 3,   img: 'kamenbezpozadia.png' },
+    { id: 'stone3', step: 3, label: 'Zručnosti',  width: 8,    bottom: 3,  left: 23, rotate: -6,  img: 'kamen.png' },
+    { id: 'stone4', step: 4, label: 'Projekty',   width: 9,    bottom: 7,  left: 31, rotate: 5,   img: 'kamenbezpozadia.png' },
+    { id: 'stone5', step: 5, label: 'Dizajn',     width: 8,    bottom: 3,  left: 40, rotate: -3,  img: 'kamen.png' },
+    { id: 'stone6', step: 6, label: 'Skúsenosti', width: 10,   bottom: 6,  left: 48, rotate: 6,   img: 'kamenbezpozadia.png' },
+    { id: 'stone7', step: 7, label: 'Vzdelanie',  width: 11.5, bottom: 3,  left: 57, rotate: -5,  img: 'kamen.png' },
+    { id: 'stone8', step: 8, label: 'Vízia',      width: 8.5,  bottom: 8,  left: 67, rotate: 8,   img: 'kamenbezpozadia.png' },
+    { id: 'stone9', step: 9, label: 'Kontakt',    width: 11,   bottom: 4,  left: 76, rotate: -8,  img: 'kamen.png' }
 ];
 
 /**
- * Vektorové SVG náhľady pre 3 karty projektov (presne v štýle tvojej vizuálnej ukážky)
+ * Jednoduché vektorové náhľady projektov (žiadne externé súbory)
  */
 const projectSvgPreviews = [
-    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="8" width="184" height="94" rx="8" fill="#0d1b33" stroke="#38bdf8" stroke-opacity="0.45"/>
-        <circle cx="22" cy="20" r="3" fill="#ef4444"/><circle cx="32" cy="20" r="3" fill="#fbbf24"/><circle cx="42" cy="20" r="3" fill="#10b981"/>
-        <rect x="24" y="36" width="90" height="10" rx="5" fill="#38bdf8"/>
-        <rect x="24" y="52" width="140" height="6" rx="3" fill="#64748b"/>
-        <rect x="24" y="64" width="110" height="6" rx="3" fill="#475569"/>
-        <circle cx="40" cy="86" r="7" fill="#38bdf8" fill-opacity="0.4" stroke="#38bdf8"/>
-        <circle cx="72" cy="86" r="7" fill="#38bdf8" fill-opacity="0.4" stroke="#38bdf8"/>
-        <circle cx="104" cy="86" r="7" fill="#38bdf8" fill-opacity="0.4" stroke="#38bdf8"/>
+    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Náhľad projektu">
+        <rect width="200" height="110" fill="#0d1526"/>
+        <rect x="12" y="12" width="176" height="86" rx="8" fill="#131f3a" stroke="#38bdf8" stroke-opacity="0.4"/>
+        <circle cx="24" cy="24" r="3" fill="#ef4444"/><circle cx="34" cy="24" r="3" fill="#fbbf24"/><circle cx="44" cy="24" r="3" fill="#10b981"/>
+        <rect x="20" y="40" width="90" height="8" rx="4" fill="#38bdf8" opacity="0.8"/>
+        <rect x="20" y="56" width="130" height="6" rx="3" fill="#64748b"/>
+        <rect x="20" y="68" width="110" height="6" rx="3" fill="#475569"/>
+        <rect x="20" y="80" width="60" height="6" rx="3" fill="#334155"/>
     </svg>`,
-    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="12" y="10" width="65" height="90" rx="6" fill="#0f1f3a" stroke="#6366f1" stroke-opacity="0.45"/>
-        <rect x="22" y="22" width="45" height="6" rx="3" fill="#38bdf8"/>
-        <rect x="22" y="34" width="35" height="5" rx="2.5" fill="#64748b"/>
-        <rect x="88" y="10" width="46" height="42" rx="6" fill="#132544" stroke="#38bdf8" stroke-opacity="0.4"/>
-        <rect x="142" y="10" width="46" height="42" rx="6" fill="#132544" stroke="#38bdf8" stroke-opacity="0.4"/>
-        <rect x="88" y="58" width="46" height="42" rx="6" fill="#132544" stroke="#38bdf8" stroke-opacity="0.4"/>
-        <rect x="142" y="58" width="46" height="42" rx="6" fill="#132544" stroke="#38bdf8" stroke-opacity="0.4"/>
+    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Náhľad projektu">
+        <rect width="200" height="110" fill="#0d1526"/>
+        <rect x="14" y="14" width="80" height="82" rx="8" fill="#131f3a" stroke="#fbbf24" stroke-opacity="0.45"/>
+        <rect x="106" y="14" width="80" height="38" rx="8" fill="#131f3a" stroke="#38bdf8" stroke-opacity="0.4"/>
+        <rect x="106" y="58" width="80" height="38" rx="8" fill="#131f3a" stroke="#10b981" stroke-opacity="0.4"/>
+        <path d="M30 70 L45 45 L58 62 L70 40 L82 70 Z" fill="#fbbf24" opacity="0.75"/>
+        <circle cx="146" cy="33" r="10" fill="#38bdf8" opacity="0.75"/>
+        <rect x="118" y="70" width="56" height="6" rx="3" fill="#64748b"/>
+        <rect x="118" y="82" width="40" height="6" rx="3" fill="#475569"/>
     </svg>`,
-    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="30" width="44" height="48" rx="8" fill="#11223d" stroke="#475569"/>
-        <text x="30" y="59" fill="#94a3b8" font-size="14" font-family="monospace">&lt;/&gt;</text>
-        <rect x="78" y="24" width="48" height="60" rx="10" fill="#102a49" stroke="#38bdf8" stroke-width="1.5"/>
-        <circle cx="102" cy="54" r="14" stroke="#38bdf8" stroke-width="3" fill="none"/>
-        <rect x="140" y="30" width="44" height="48" rx="8" fill="#11223d" stroke="#475569"/>
-        <rect x="152" y="42" width="20" height="24" rx="3" stroke="#94a3b8" fill="none"/>
+    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Náhľad projektu">
+        <rect width="200" height="110" fill="#0d1526"/>
+        <rect x="14" y="16" width="172" height="78" rx="8" fill="#0a0f1e" stroke="#10b981" stroke-opacity="0.45"/>
+        <text x="26" y="42" font-family="monospace" font-size="13" fill="#10b981">&gt; npm run magic</text>
+        <text x="26" y="62" font-family="monospace" font-size="13" fill="#38bdf8">&gt; render(portfolio)</text>
+        <text x="26" y="82" font-family="monospace" font-size="13" fill="#fbbf24">&gt; ✔ hotovo</text>
+    </svg>`,
+    `<svg viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Náhľad projektu">
+        <rect width="200" height="110" fill="#0d1526"/>
+        <circle cx="100" cy="55" r="34" fill="#131f3a" stroke="#6366f1" stroke-opacity="0.55"/>
+        <path d="M100 30 L108 48 L126 48 L112 60 L118 78 L100 66 L82 78 L88 60 L74 48 L92 48 Z" fill="#fbbf24" opacity="0.9"/>
+        <circle cx="30" cy="26" r="2" fill="#38bdf8"/><circle cx="170" cy="30" r="2" fill="#38bdf8"/>
+        <circle cx="36" cy="86" r="2" fill="#fbbf24"/><circle cx="164" cy="84" r="2" fill="#fbbf24"/>
     </svg>`
 ];
 
@@ -173,16 +180,15 @@ const closeOverviewBtn = document.getElementById('close-overview-btn');
 const overviewList = document.getElementById('overview-list');
 const resetProgressBtn = document.getElementById('reset-progress-btn');
 
-const stoneRatio = 1.5;
-const scaleMultiplier = 1.4;
-
 /**
  * Zobrazenie krátkej plávajúcej správy (Toast notifikácia)
  */
+let toastTimer;
 function showToast(message) {
     toastEl.textContent = message;
     toastEl.classList.add('show');
-    setTimeout(() => {
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
         toastEl.classList.remove('show');
     }, 3200);
 }
@@ -238,19 +244,17 @@ function renderPortfolio() {
         btn.id = `btn-${item.id}`;
         btn.setAttribute('aria-label', `${item.step}. ${item.label}`);
 
-        const pixelWidth = item.size * scaleMultiplier;
-        const pixelHeight = pixelWidth * stoneRatio;
-        const widthPercent = (pixelWidth / 1920) * 100;
-        const heightPercent = (pixelHeight / 1080) * 100;
-
-        btn.style.width = `${widthPercent}%`;
-        btn.style.height = `${heightPercent}%`;
+        btn.style.width = `${item.width}%`;
         btn.style.left = `${item.left}%`;
         btn.style.bottom = `${item.bottom}%`;
+        btn.style.rotate = `${item.rotate}deg`;
 
-        const divRotation = 90 + item.rotate;
-        btn.style.setProperty('--rot', `${divRotation}deg`);
-        btn.style.backgroundImage = `url('${item.img}'), url('kamen.svg'), url('kamenbezpozadia.png')`;
+        const img = document.createElement('img');
+        img.src = item.img;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.draggable = false;
+        btn.appendChild(img);
 
         if (visitedStones.has(item.id)) {
             btn.classList.add('visited');
@@ -259,7 +263,7 @@ function renderPortfolio() {
         const labelSpan = document.createElement('span');
         labelSpan.className = 'stone-label';
         labelSpan.textContent = item.label;
-        labelSpan.style.transform = `rotate(${-divRotation}deg)`;
+        labelSpan.style.rotate = `${-item.rotate}deg`;
         btn.appendChild(labelSpan);
 
         btn.style.animation = `stoneAppear 0.6s ease-out ${index * 0.09}s forwards`;

@@ -1,0 +1,815 @@
+/* ==========================================================================
+   LUCIA DANIELOVÁ – INTERAKTÍVNE PORTFÓLIO
+   Plne samostatná verzia – žiadne externé obrázky, všetko kreslí CSS + SVG
+   ========================================================================== */
+
+:root {
+    --bg-dark: #070b14;
+    --primary-accent: #38bdf8;
+    --primary-glow: rgba(56, 189, 248, 0.78);
+    --secondary-accent: #fbbf24;
+    --emerald-accent: #10b981;
+    --text-light: #f8fafc;
+    --text-muted: #cbd5e1;
+    --glass-bg: rgba(13, 21, 38, 0.86);
+    --glass-border: rgba(56, 189, 248, 0.25);
+    --glass-shadow: 0 28px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(56, 189, 248, 0.14);
+    --transition-fast: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at 50% 35%, #131d36 0%, #050811 100%);
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0 48px;
+}
+
+/* ==========================================================================
+   PLÁVAJÚCA HLAVIČKA
+   ========================================================================== */
+.site-header {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    z-index: 150;
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 16px 22px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+    max-width: 460px;
+    transition: border-color var(--transition-fast);
+}
+
+.site-header:hover {
+    border-color: rgba(56, 189, 248, 0.5);
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.header-badge {
+    background: linear-gradient(135deg, var(--primary-accent), #6366f1);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.progress-pill {
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: var(--primary-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    transition: all var(--transition-fast);
+}
+
+.overview-trigger {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.overview-trigger:hover {
+    background: var(--primary-accent);
+    color: #070b14;
+    border-color: transparent;
+    transform: translateY(-1px);
+}
+
+.site-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.05rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.site-header h1 span {
+    color: var(--primary-accent);
+    font-style: italic;
+}
+
+.site-header p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SCÉNA 16:9 S ILUSTROVANÝM POZADÍM (podklad.jpg)
+   ========================================================================== */
+.stage-wrapper {
+    width: min(1400px, 96vw);
+    margin-top: 40px;
+}
+
+.portfolio-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), inset 0 0 120px rgba(56, 189, 248, 0.06);
+    background-color: #0b1330;
+    background-image: url('podklad.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Svetlušky */
+.ambient-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.firefly {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fde68a 0%, rgba(253, 230, 138, 0) 70%);
+    box-shadow: 0 0 8px rgba(253, 230, 138, 0.9);
+    animation: fireflyFloat linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fireflyFloat {
+    0%   { transform: translate(0, 0); opacity: 0; }
+    15%  { opacity: 0.9; }
+    50%  { transform: translate(18px, -26px); opacity: 0.5; }
+    85%  { opacity: 0.9; }
+    100% { transform: translate(-12px, -48px); opacity: 0; }
+}
+
+/* ==========================================================================
+   KAMENE NA CESTE (obrázky s priesvitným pozadím)
+   ========================================================================== */
+.stone-btn {
+    position: absolute;
+    z-index: 10;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    transform-origin: 50% 90%;
+    transition: filter var(--transition-fast);
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.55));
+}
+
+.stone-btn img {
+    width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+    transition: filter var(--transition-fast), transform var(--transition-fast);
+}
+
+.stone-btn:hover,
+.stone-btn:focus-visible {
+    filter: drop-shadow(0 0 18px var(--primary-glow)) drop-shadow(0 12px 16px rgba(0, 0, 0, 0.55));
+    outline: none;
+    z-index: 20;
+}
+
+.stone-btn:hover img,
+.stone-btn:focus-visible img {
+    transform: scale(1.06);
+}
+
+/* Jemné hojdanie po objavení */
+.stone-btn.is-floating {
+    animation: stoneFloat 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes stoneFloat {
+    from { translate: 0 0; }
+    to   { translate: 0 -6px; }
+}
+
+@keyframes stoneAppear {
+    0%   { opacity: 0; transform: scale(0.3) translateY(30px); }
+    60%  { opacity: 1; transform: scale(1.08) translateY(-4px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Nenavštívený kameň je stmavený, navštívený svieti */
+.stone-btn:not(.visited) img {
+    filter: brightness(0.6) saturate(0.75);
+}
+
+.stone-btn.visited {
+    filter: drop-shadow(0 0 16px rgba(251, 191, 36, 0.55)) drop-shadow(0 10px 14px rgba(0, 0, 0, 0.55));
+}
+
+/* Popisok kameňa */
+.stone-label {
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    color: var(--text-light);
+    font-size: clamp(9px, 1vw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 3px 12px;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: none;
+    transition: all var(--transition-fast);
+}
+
+.stone-btn:hover .stone-label {
+    background: var(--primary-accent);
+    color: #070b14;
+    border-color: transparent;
+}
+
+/* ==========================================================================
+   MOBILNÁ SEKCIA
+   ========================================================================== */
+.mobile-section {
+    display: none;
+    width: min(1400px, 96vw);
+    margin-top: 28px;
+}
+
+.mobile-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    color: var(--text-light);
+}
+
+.mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+/* ==========================================================================
+   MODÁLNE OKNÁ (Glassmorphism)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(3, 6, 14, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-smooth), visibility var(--transition-smooth);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    width: min(560px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    padding: 36px 34px 24px;
+    transform: translateY(26px) scale(0.96);
+    transition: transform var(--transition-smooth), width var(--transition-smooth);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-content.modal-wide {
+    width: min(1040px, 100%);
+}
+
+.close-modal {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-light);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.close-modal:hover {
+    background: #ef4444;
+    border-color: transparent;
+    transform: rotate(90deg);
+}
+
+.modal-subtitle {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--secondary-accent);
+    margin-bottom: 6px;
+}
+
+.modal-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 6px;
+}
+
+.divider {
+    color: var(--primary-accent);
+    font-size: 1rem;
+    margin: 8px 0 14px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 44px;
+    height: 1px;
+    margin: 0 10px;
+    background: linear-gradient(90deg, transparent, var(--primary-accent), transparent);
+}
+
+.modal-body p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+}
+
+.modal-dynamic-extra {
+    margin-top: 18px;
+}
+
+.modal-dynamic-extra:empty {
+    margin-top: 0;
+}
+
+/* Štítky */
+.modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.tag-badge {
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: var(--primary-accent);
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 999px;
+}
+
+/* Akčné tlačidlá */
+.modal-action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-accent), #6366f1);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(56, 189, 248, 0.4);
+}
+
+.action-btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: var(--text-light);
+}
+
+.action-btn.secondary:hover {
+    background: var(--secondary-accent);
+    color: #070b14;
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(251, 191, 36, 0.35);
+}
+
+/* Pätička modálu – navigácia medzi kameňmi */
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 26px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-arrow-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.nav-arrow-btn:hover {
+    background: var(--primary-accent);
+    color: #070b14;
+    border-color: transparent;
+}
+
+.modal-step-indicator {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   PROJEKTY – široký 3-stĺpcový režim
+   ========================================================================== */
+.projects-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.project-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 16px;
+    transition: all var(--transition-fast);
+}
+
+.project-item-card:hover {
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.project-preview-box {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.project-preview-box svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.project-item-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.project-item-desc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.project-mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.project-mini-tag {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #6ee7b7;
+    font-size: 0.64rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+}
+
+.project-item-links {
+    display: flex;
+    gap: 8px;
+}
+
+.project-link-btn {
+    flex: 1;
+    text-align: center;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: all var(--transition-fast);
+}
+
+.project-link-btn.live {
+    background: linear-gradient(135deg, var(--primary-accent), #6366f1);
+    color: #ffffff;
+}
+
+.project-link-btn.code {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+}
+
+.project-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   ZRUČNOSTI – animované progress bary
+   ========================================================================== */
+.skills-bars-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.skill-bar-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.skill-bar-top span:last-child {
+    color: var(--primary-accent);
+    font-weight: 700;
+}
+
+.skill-bar-track {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary-accent), var(--emerald-accent));
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   RÝCHLY PREHĽAD
+   ========================================================================== */
+.overview-modal {
+    width: min(860px, 100%);
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.overview-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text-light);
+    transition: all var(--transition-fast);
+}
+
+.overview-card:hover {
+    border-color: var(--primary-accent);
+    transform: translateY(-2px);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.card-step {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+}
+
+.card-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.overview-card.is-visited {
+    border-color: rgba(251, 191, 36, 0.55);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+.overview-card.is-visited .card-step {
+    color: var(--secondary-accent);
+}
+
+.overview-card.is-visited .card-title::after {
+    content: ' ✓';
+    color: var(--secondary-accent);
+}
+
+.overview-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.reset-progress-btn {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.reset-progress-btn:hover {
+    background: #ef4444;
+    color: #ffffff;
+    border-color: transparent;
+}
+
+/* ==========================================================================
+   TOAST NOTIFIKÁCIA
+   ========================================================================== */
+.toast-notification {
+    position: fixed;
+    bottom: 26px;
+    left: 50%;
+    z-index: 400;
+    transform: translate(-50%, 80px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(251, 191, 36, 0.45);
+    border-radius: 14px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 13px 24px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+    max-width: 90vw;
+    text-align: center;
+}
+
+.toast-notification.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONZIVITA
+   ========================================================================== */
+@media (max-width: 900px) {
+    .site-header {
+        position: static;
+        margin: 12px auto 0;
+        max-width: 94vw;
+    }
+
+    body {
+        justify-content: flex-start;
+        padding-top: 0;
+    }
+
+    .stage-wrapper {
+        margin-top: 18px;
+    }
+
+    .stone-label {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .projects-showcase-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mobile-section {
+        display: block;
+    }
+
+    .modal-content {
+        padding: 28px 20px 18px;
+    }
+
+    .modal-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Rešpektovanie preferencie používateľa na obmedzený pohyb */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
